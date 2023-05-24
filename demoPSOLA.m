@@ -14,13 +14,13 @@ winLength = round(0.05*Fs);
 overlapLength = round(0.045*Fs);
 
 % SET: pitch shift in semitones
-semitones = 3;
+semitones = -2;
 
 % SET: time stretching factor
-timeStretch = 1.2;
+timeStretch = 0.7;
 
 % SET: formant shifting factor
-formantShift = 0.8;
+formantShift = 0.9;
 
 % pitch shifting factor: semitones to ratio
 pitchShift = pow2(semitones/12);
@@ -36,6 +36,6 @@ pitchMarks = getPitchMarks(x,Fs,pitch,(winLength-overlapLength),winLength);
 psolaOut = psola(x,pitchMarks,timeStretch,pitchShift,formantShift);
 toc
 
-psolaFileName = sprintf("output/%s s=%g t=%g f=%g.wav",filename,semitones,timeStretch,formantShift);
+psolaFileName = sprintf("output/%s S=%g T=%g F=%g.wav",filename,semitones,timeStretch,formantShift);
 
 audiowrite(psolaFileName,psolaOut,Fs);

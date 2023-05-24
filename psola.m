@@ -31,6 +31,7 @@ else
     periods = [periods periods(end)]; 
 end
 
+% create output buffer
 out = zeros(ceil(length(in)*timeStretch),1); 
 
 % synthesis pitch mark
@@ -82,19 +83,17 @@ while round(tk) < length(out)
  end
 
  % handle off-by-one mismatch from rounding
- if length(outStart:outEnd) == length(gr)+1
-     outEnd = outEnd - 1;
- elseif length(outStart:outEnd) == length(gr)-1
-     outEnd = outEnd + 1;
+ switch length(outStart:outEnd)
+     case length(gr)+1
+         outEnd = outEnd - 1;
+     case length(gr)-1
+         outEnd = outEnd + 1;
  end
 
  % handle transposition mismatch
  if size(out(outStart:outEnd)) == size(gr')
     gr = gr';
  end
-
- % fprintf("outSize: %s\n",num2str(size(outStart:outEnd)))
- % fprintf("grainSize: %s\n",num2str(size(gr)))
 
  % overlap and add
  out(outStart:outEnd) = out(outStart:outEnd) + gr; 

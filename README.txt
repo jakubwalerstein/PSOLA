@@ -1,4 +1,4 @@
-This code is a basic implementation of the PSOLA pitch shifting algorithm. 
+This is a basic implementation of the PSOLA pitch shifting algorithm. 
 It can change the pitch, time, and formant of an input signal independently of one another. 
 PSOLA works best on monophonic tonal input. 
 
